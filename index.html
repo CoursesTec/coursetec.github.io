@@ -3,55 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RSU - Cursos Digitales UNPRG</title>
-  <link rel="stylesheet" href="css/estilos.css" />
-  <link rel="icon" href="img/unprg-logo.png" />
+  <title>Inicio de Sesión - RSU UNPRG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(to right, #005AA7, #FFFDE4);
+      padding: 1rem;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .container h1 {
+      margin-bottom: 1.5rem;
+      font-size: 1.75rem;
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.75rem;
+      background-color: #005AA7;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #004b8c;
+    }
+
+    #login-error {
+      color: red;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem;
+      }
+      .container h1 {
+        font-size: 1.5rem;
+      }
+      input, button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="header-principal">
-    <img src="img/unprg-logo.png" alt="Logo UNPRG" class="logo" />
-    <img src="img/epici-logo.png" alt="Logo EPICI" class="logo" />
-    <h1>Proyecto RSU - EPICI UNPRG</h1>
-    <p>Herramientas Digitales para la Educación Básica Peruana</p>
-    <div class="botones">
-      <a href="login.html" class="btn">Iniciar Sesión</a>
-      <a href="registro.html" class="btn btn-secundario">Registrarse</a>
-    </div>
-  </header>
-
-  <main class="contenedor">
-    <section class="intro">
-      <h2>¿De qué trata este proyecto?</h2>
-      <p>Esta plataforma ofrece cursos virtuales gratuitos dirigidos a docentes y estudiantes de educación básica en el Perú. Aprende a usar herramientas digitales modernas con el acompañamiento de estudiantes de Ingeniería en Computación e Informática.</p>
-    </section>
-
-    <section class="cursos-destacados">
-      <h2>Cursos disponibles</h2>
-      <div class="grid-cursos">
-        <div class="curso">
-          <h3>Herramientas de Google</h3>
-          <iframe src="https://www.youtube.com/embed/xT3m-XwA06g" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class="curso">
-          <h3>Edición de Video</h3>
-          <iframe src="https://www.youtube.com/embed/yvF_QnP3nQc" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class="curso">
-          <h3>Diseño Básico</h3>
-          <iframe src="https://www.youtube.com/embed/DO1Q7FzkmYM" frameborder="0" allowfullscreen></iframe>
-        </div>
-      </div>
-    </section>
-
-    <section class="contacto">
-      <h2>Contacto</h2>
-      <p>Universidad Nacional Pedro Ruiz Gallo - Escuela Profesional de Ingeniería en Computación e Informática</p>
-      <p>Correo: <a href="mailto:rsu.epici@unprg.edu.pe">rsu.epici@unprg.edu.pe</a></p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>&copy; 2025 Proyecto RSU - UNPRG. Todos los derechos reservados.</p>
-  </footer>
+  <div class="container">
+    <h1>Iniciar Sesión</h1>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Correo electrónico" required />
+      <input type="password" id="password" placeholder="Contraseña" required />
+      <p id="login-error"></p>
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
+  <script type="module" src="./js/login.js"></script>
 </body>
 </html>

@@ -1,53 +1,71 @@
-// js/dashboard.js
-import { auth, db } from "./firebase-config.js";
-import {
-  signOut,
-  onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {
-  doc,
-  getDoc,
-  setDoc,
-  collection,
-  getDocs,
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Simulamos los cursos disponibles
-const cursosDisponibles = [
-  { id: "curso1", titulo: "Herramientas de Google", descripcion: "Drive, Docs, Classroom", video: "https://www.youtube.com/embed/xT3m-XwA06g" },
-  { id: "curso2", titulo: "Edición de Video", descripcion: "CapCut, Clipchamp, OBS Studio", video: "https://www.youtube.com/embed/yvF_QnP3nQc" },
-  { id: "curso3", titulo: "Diseño básico", descripcion: "Canva, Genially, Piktochart", video: "https://www.youtube.com/embed/DO1Q7FzkmYM" },
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDUMTm5ksASiDCOHE0nyjMJ_d9eaOZOsHw",
+  authDomain: "coursetech-3403b.firebaseapp.com",
+  projectId: "coursetech-3403b",
+  storageBucket: "coursetech-3403b.firebasestorage.app",
+  messagingSenderId: "184929937348",
+  appId: "1:184929937348:web:ddd5ef53f642bf2c36a691",
+  measurementId: "G-8JNDG6MDN7"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+// Referencias a elementos del DOM
+const userNameEl = document.getElementById("user-name");
+const coursesContainer = document.getElementById("courses-container");
+const logoutBtn = document.getElementById("logout-btn");
+
+// Datos simulados de cursos
+const cursos = [
+  { titulo: "Google Drive Básico", progreso: 40 },
+  { titulo: "Google Classroom para Primaria", progreso: 70 },
+  { titulo: "PowerPoint para Docentes", progreso: 25 },
+  { titulo: "Canva para Material Didáctico", progreso: 80 }
 ];
 
-const contenedor = document.getElementById("cursos");
-
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
-
-  const progresoDoc = await getDoc(doc(db, "progreso", user.uid));
-  let progreso = progresoDoc.exists() ? progresoDoc.data() : {};
-
-  cursosDisponibles.forEach((curso) => {
-    const estado = progreso[curso.id]?.completado ? "✅ Completado" : "⏳ En progreso";
-
-    const div = document.createElement("div");
-    div.className = "curso";
-    div.innerHTML = `
-      <h3>${curso.titulo}</h3>
-      <p>${curso.descripcion}</p>
-      <iframe width="300" height="170" src="${curso.video}" frameborder="0" allowfullscreen></iframe>
-      <p><strong>${estado}</strong></p>
-      <button onclick="window.location.href='curso.html?id=${curso.id}'">Ir al curso</button>
+// Función para renderizar los cursos
+function renderCursos() {
+  coursesContainer.innerHTML = "";
+  cursos.forEach(curso => {
+    const card = document.createElement("div");
+    card.className = "course-card";
+    card.innerHTML = `
+      <h2>${curso.titulo}</h2>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: ${curso.progreso}%;"></div>
+      </div>
+      <a class="btn-ir" href="#">Ir al curso</a>
     `;
-    contenedor.appendChild(div);
+    coursesContainer.appendChild(card);
   });
+}
+
+// Verificar si el usuario está autenticado
+onAuthStateChanged(auth, user => {
+  if (user) {
+    userNameEl.textContent = `Bienvenido/a, ${user.email}`;
+    renderCursos();
+  } else {
+    window.location.href = "login.html";
+  }
 });
 
-document.getElementById("logout").addEventListener("click", () => {
-  signOut(auth).then(() => {
-    window.location.href = "login.html";
-  });
+// Cerrar sesión
+logoutBtn.addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      window.location.href = "login.html";
+    })
+    .catch(error => {
+      console.error("Error al cerrar sesión:", error);
+    });
 });
