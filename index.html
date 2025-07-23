@@ -44,11 +44,24 @@
       gap: 1rem;
     }
 
+    label {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: #222;
+      font-size: 1rem;
+    }
+
     input {
       padding: 0.75rem;
       border: 1px solid #ccc;
       border-radius: 0.5rem;
       font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      border-color: #005AA7;
+      outline: none;
     }
 
     button {
@@ -60,16 +73,19 @@
       font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.3s;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
-    button:hover {
+    button:hover, button:focus {
       background-color: #004b8c;
     }
 
     #login-error {
-      color: red;
-      font-size: 0.9rem;
+      color: #d32f2f;
+      font-size: 0.95rem;
       text-align: center;
+      min-height: 1.2em;
     }
 
     @media (max-width: 480px) {
@@ -86,15 +102,21 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Iniciar Sesión</h1>
-    <form id="login-form">
-      <input type="email" id="email" placeholder="Correo electrónico" required />
-      <input type="password" id="password" placeholder="Contraseña" required />
-      <p id="login-error"></p>
-      <button type="submit">Ingresar</button>
-    </form>
-  </div>
+  <main>
+    <div class="container" role="main" aria-labelledby="login-title">
+      <h1 id="login-title">Iniciar Sesión</h1>
+      <form id="login-form" autocomplete="on" novalidate>
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required autocomplete="email" />
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" placeholder="Contraseña" required autocomplete="current-password" />
+
+        <p id="login-error" aria-live="polite"></p>
+        <button type="submit">Ingresar</button>
+      </form>
+    </div>
+  </main>
   <script type="module" src="./js/login.js"></script>
 </body>
 </html>
