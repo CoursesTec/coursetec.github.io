@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión - RSU UNPRG</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="fondo-login">
+  <div class="login-wrapper">
+    <div class="login-box">
+      <img src="img/unprg-logo.png" alt="Logo UNPRG" class="logo-pequeno">
+      <h2>Bienvenido</h2>
+      <p class="subtitulo">Inicia sesión para acceder a tus cursos</p>
+      <form id="login-form">
+        <div class="campo">
+          <label for="email">Correo institucional</label>
+          <input type="email" id="email" placeholder="tucorreo@unprg.edu.pe" required />
+        </div>
+        <div class="campo">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" placeholder="********" required />
+        </div>
+        <button type="submit" class="boton">Ingresar</button>
+        <p class="texto-secundario">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
+
