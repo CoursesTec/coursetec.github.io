@@ -3,19 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Página Principal - RSU UNPRG</title>
+  <title>CoursesTec - RSU UNPRG</title>
   <link rel="stylesheet" href="css/estilos.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(120deg, #005AA7 0%, #FFFDE4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+    }
+    .principal-main {
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .principal-box {
+      background: rgba(255,255,255,0.97);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      padding: 2.5rem 2rem 2rem 2rem;
+      max-width: 410px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 1s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .logo-pequeno {
+      width: 80px;
+      margin-bottom: 1.2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #005AA7;
+      margin-bottom: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .rsu-mision {
+      font-size: 1.05rem;
+      color: #222;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+    .destacado {
+      color: #10b981;
+      font-weight: 600;
+    }
+    .botones-principal {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .boton, .boton-secundario {
+      padding: 0.85rem 1.5rem;
+      border-radius: 0.7rem;
+      border: none;
+      font-size: 1.08rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,90,167,0.08);
+      outline: none;
+      display: inline-block;
+    }
+    .boton {
+      background: linear-gradient(90deg, #005AA7 60%, #10b981 100%);
+      color: #fff;
+      border: none;
+    }
+    .boton:hover, .boton:focus {
+      background: linear-gradient(90deg, #10b981 0%, #005AA7 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(16,185,129,0.12);
+    }
+    .boton-secundario {
+      background: #fff;
+      color: #005AA7;
+      border: 2px solid #10b981;
+    }
+    .boton-secundario:hover, .boton-secundario:focus {
+      background: #10b981;
+      color: #fff;
+      border-color: #10b981;
+    }
+    @media (max-width: 500px) {
+      .principal-box {
+        padding: 1.2rem 0.5rem;
+        max-width: 98vw;
+      }
+      h1 {
+        font-size: 1.3rem;
+      }
+      .rsu-mision {
+        font-size: 0.98rem;
+      }
+      .botones-principal {
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="principal-main">
     <div class="principal-box">
-      <img src="img/unprg-logo.png" alt="Logo UNPRG" class="logo-pequeno">
-      <h1>Bienvenido a RSU UNPRG</h1>
-      <p>Accede a tus cursos y recursos.</p>
+      <img src="img/unprg-logo.png" alt="Logo UNPRG" class="logo-pequeno" loading="lazy">
+      <h1>CoursesTec <span class="destacado">RSU</span> UNPRG</h1>
+      <p class="rsu-mision">
+        <span class="destacado">Responsabilidad Social Universitaria</span> de la UNPRG.<br>
+        Plataforma de formación y recursos para <b>alumnos de poblaciones vulnerables</b>.<br>
+        <span style="color:#005AA7;">¡Transforma tu futuro con educación digital inclusiva!</span>
+      </p>
       <div class="botones-principal">
-        <a href="login.html" class="boton">Iniciar Sesión</a>
-        <a href="registro.html" class="boton boton-secundario">Registrarse</a>
+        <a href="login.html" class="boton" aria-label="Iniciar sesión">Iniciar Sesión</a>
+        <a href="registro.html" class="boton boton-secundario" aria-label="Registrarse">Registrarse</a>
       </div>
     </div>
   </main>
