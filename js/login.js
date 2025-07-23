@@ -1,17 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { app } from "./firebase-config.js";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-export const firebaseConfig = {
-  apiKey: "AIzaSyD-EXAMPLE",
-  authDomain: "tu-proyecto.firebaseapp.com",
-  projectId: "tu-proyecto",
-  storageBucket: "tu-proyecto.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef123456"
-}; // Asegúrate de exportar firebaseConfig
 
-// Inicializa Firebase solo una vez
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Manejar el login
@@ -20,15 +10,25 @@ const loginError = document.getElementById("login-error");
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const email = loginForm.email.value;
   const password = loginForm.password.value;
 
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    // Redirige al dashboard si login fue exitoso
-    window.location.href = "dashboard.html";
+    loginError.style.color = "#388e3c";
+    loginError.textContent = "¡Inicio de sesión exitoso!";
+    setTimeout(() => (window.location.href = "dashboard.html"), 1200);
   } catch (error) {
-    console.error("Error al iniciar sesión:", error);
-    loginError.textContent = "Correo o contraseña incorrectos.";
+    loginError.style.color = "#d32f2f";
+    if (error.code === "auth/user-not-found") {
+      loginError.textContent = "Usuario no registrado. Regístrate primero.";
+    } else if (error.code === "auth/wrong-password") {
+      loginError.textContent = "Contraseña incorrecta.";
+    } else if (error.code === "auth/invalid-email") {
+      loginError.textContent = "Correo electrónico no válido.";
+    } else {
+      loginError.textContent = "Error al iniciar sesión.";
+    }
   }
 });

@@ -1,10 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { app } from "./firebase-config.js";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { firebaseConfig } from "./firebase-config.js";
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Lógica del formulario de registro
@@ -35,3 +32,5 @@ registerForm.addEventListener("submit", async (e) => {
     }
   }
 });
+
+<script type="module" src="js/register.js"></script>
