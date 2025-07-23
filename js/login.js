@@ -1,24 +1,19 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+export const firebaseConfig = {
+  apiKey: "AIzaSyD-EXAMPLE",
+  authDomain: "tu-proyecto.firebaseapp.com",
+  projectId: "tu-proyecto",
+  storageBucket: "tu-proyecto.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abcdef123456"
+}; // Asegúrate de exportar firebaseConfig
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDUMTm5ksASiDCOHE0nyjMJ_d9eaOZOsHw",
-  authDomain: "coursetech-3403b.firebaseapp.com",
-  projectId: "coursetech-3403b",
-  storageBucket: "coursetech-3403b.firebasestorage.app",
-  messagingSenderId: "184929937348",
-  appId: "1:184929937348:web:ddd5ef53f642bf2c36a691",
-  measurementId: "G-8JNDG6MDN7"
-};
-
-// Initialize Firebase
+// Inicializa Firebase solo una vez
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const auth = getAuth(app);
+
 // Manejar el login
 const loginForm = document.getElementById("login-form");
 const loginError = document.getElementById("login-error");

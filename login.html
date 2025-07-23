@@ -28,40 +28,10 @@
             ¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>
           </p>
         </form>
-      </div>
-    </div>
-  </main>
-  <script>
-    document.getElementById('login-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const errorMsg = document.getElementById('login-error');
-      errorMsg.style.color = "#d32f2f";
-      errorMsg.textContent = '';
-
-      if (!email || !password) {
-        errorMsg.textContent = "Por favor, completa todos los campos.";
-        return;
-      }
-      // Simulación de usuario ya registrado
-      if (email === "ya@registrado.com") {
-        errorMsg.style.color = "#388e3c";
-        errorMsg.textContent = "¡Ya has iniciado sesión anteriormente!";
-        setTimeout(() => window.location.href = "dashboard.html", 1500);
-        return;
-      }
-      // Simulación de error de login
-      if (email !== "usuario@unprg.edu.pe" || password !== "123456") {
-        errorMsg.textContent = "Correo o contraseña incorrectos.";
-        return;
-      }
-      // Login exitoso
-      errorMsg.style.color = "#388e3c";
-      errorMsg.textContent = "¡Inicio de sesión exitoso!";
-      setTimeout(() => window.location.href = "dashboard.html", 1500);
-    });
-  </script>
+</div>
+</div>
+</main>
+<script type="module" src="js/login.js"></script>
 </body>
 </html>
 
