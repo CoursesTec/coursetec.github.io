@@ -1,36 +1,21 @@
-// Import the functions you need from the SDKs you need
-import { app } from "./firebase-config.js";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-const auth = getAuth(app);
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyClho1fMhu5lsqKwLijOcm0Db5OzuuqsxU",
+    authDomain: "coursetec-827ac.firebaseapp.com",
+    projectId: "coursetec-827ac",
+    storageBucket: "coursetec-827ac.firebasestorage.app",
+    messagingSenderId: "338590949563",
+    appId: "1:338590949563:web:f5653a24f96316f9f6099e",
+    measurementId: "G-B7Q1RRCVN0"
+  };
 
-// Lógica del formulario de registro
-const registerForm = document.getElementById("register-form");
-const registerError = document.getElementById("register-error");
-
-registerForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const email = registerForm.email.value;
-  const password = registerForm.password.value;
-
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    registerError.style.color = "#388e3c";
-    registerError.textContent = "¡Registro exitoso! Ahora puedes iniciar sesión.";
-    setTimeout(() => window.location.href = "login.html", 1500);
-  } catch (error) {
-    registerError.style.color = "#d32f2f";
-    if (error.code === "auth/email-already-in-use") {
-      registerError.textContent = "Este correo ya está registrado. Inicia sesión.";
-    } else if (error.code === "auth/weak-password") {
-      registerError.textContent = "La contraseña debe tener al menos 6 caracteres.";
-    } else if (error.code === "auth/invalid-email") {
-      registerError.textContent = "Correo electrónico no válido.";
-    } else {
-      registerError.textContent = "Error al registrar usuario.";
-    }
-  }
-});
-
-<script type="module" src="js/register.js"></script>
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
