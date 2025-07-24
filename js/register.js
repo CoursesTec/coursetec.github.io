@@ -20,14 +20,15 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-  //input elements
-  const email= document.getElementById("email").value;
-  const password= document.getElementById("password").value;
-  //sumit button
+
+
   const submitButton = document.getElementById("submit-button");
   submitButton .addEventListener("click", async (event) => {
     event.preventDefault(); // Prevent the default form submission
-
+    //input elements
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    //sumit button
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
       // Signed up 
