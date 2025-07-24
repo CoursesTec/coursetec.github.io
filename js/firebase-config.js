@@ -1,17 +1,21 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Tu configuración de Firebase
-export const firebaseConfig = {
-  apiKey: "AIzaSyDUMTm5ksASiDCOHE0nyjMJ_d9eaOZOsHw",
-  authDomain: "coursetech-3403b.firebaseapp.com",
-  projectId: "coursetech-3403b",
-  storageBucket: "coursetech-3403b.firebasestorage.app",
-  messagingSenderId: "184929937348",
-  appId: "1:184929937348:web:ddd5ef53f642bf2c36a691",
-  measurementId: "G-8JNDG6MDN7"
-};
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyClho1fMhu5lsqKwLijOcm0Db5OzuuqsxU",
+    authDomain: "coursetec-827ac.firebaseapp.com",
+    projectId: "coursetec-827ac",
+    storageBucket: "coursetec-827ac.firebasestorage.app",
+    messagingSenderId: "338590949563",
+    appId: "1:338590949563:web:f5653a24f96316f9f6099e",
+    measurementId: "G-B7Q1RRCVN0"
+  };
 
-// Inicializa Firebase solo si lo necesitas aquí
-export const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
