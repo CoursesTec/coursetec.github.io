@@ -1,6 +1,5 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
   import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
   // TODO: Add SDKs for Firebase products that you want to use
@@ -20,7 +19,7 @@
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
   //input elements
   const email= document.getElementById("email").value;
   const password= document.getElementById("password").value;
@@ -28,18 +27,19 @@
   const submitButton = document.getElementById("submit-button");
   submitButton .addEventListener("click", async (event) => {
     event.preventDefault(); // Prevent the default form submission
-  // Perform your registration logic here
-    try {
-  // Example: Log the email and password to the console
-      console.log("Email:", email);
-      console.log("Password:", password);
 
-  // You can also send this data to your server or Firebase for registration
-await firebase.auth().createUserWithEmailAndPassword(email, password);
-
-      alert("Registration successful!");
-  } catch (error) {
-    console.error("Error during registration:", error);
-    alert("Registration failed. Please try again.");
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+      // Signed up 
+      const user = userCredential.user;
+      alert("User registered successfully!");
+      // ...
+      })
+      .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert("Error: " + errorMessage);
+      // ..
+      });
   }
-});
+  );
